@@ -8,17 +8,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Page surfaces — true monochrome, no blue
         ink: {
-          950: '#070a14',
-          900: '#0b0e1a',
-          800: '#10142a',
-          700: '#181d3a',
+          950: '#050506',
+          900: '#0a0a0b',
+          800: '#131316',
+          700: '#1f1f23',
         },
+        // Bone — the warm off-white that replaces white
+        bone: {
+          DEFAULT: '#f5f1e8',
+          dim: '#a8a399',
+          faint: '#6f6b62',
+        },
+        // Ember — the only accent color, used sparingly
         accent: {
-          DEFAULT: '#7c8cff',
-          warm: '#ffb37c',
-          mint: '#7cffd4',
-          violet: '#a78bfa',
+          DEFAULT: '#d4a574',
+          warm: '#d4a574',     // alias kept for backward compat
+          mint: '#d4a574',     // collapsed to ember (was teal in old palette)
+          violet: '#d4a574',   // collapsed to ember (was purple in old palette)
         },
       },
       fontFamily: {
@@ -30,7 +38,7 @@ const config: Config = {
         'gradient-shift': 'gradient-shift 18s ease-in-out infinite',
         'float-slow': 'float 8s ease-in-out infinite',
         'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
-        'marquee': 'marquee 40s linear infinite',
+        'marquee': 'marquee 50s linear infinite',
       },
       keyframes: {
         'gradient-shift': {
