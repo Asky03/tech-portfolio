@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Manrope, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { site } from '@/lib/site';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 const sans = Manrope({
   subsets: ['latin'],
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
     siteName: site.name,
     images: [
       {
-        url: '/og.png', // place a 1200x630 image at /public/og.png
+        url: '/og.png',
         width: 1200,
         height: 630,
         alt: `${site.name} portfolio`,
@@ -76,7 +77,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0b0e1a',
+  themeColor: '#0a0a0b',
   width: 'device-width',
   initialScale: 1,
 };
@@ -100,9 +101,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
       <body>
+        {/* Static atmospheric layers (CSS-only) */}
         <div className="bg-atmosphere" aria-hidden="true" />
         <div className="bg-grid" aria-hidden="true" />
         <div className="bg-noise" aria-hidden="true" />
+
+        {/* Animated layers (JS-driven, respects reduced-motion + touch) */}
+        <AnimatedBackground />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
