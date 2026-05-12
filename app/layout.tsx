@@ -74,6 +74,13 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { canonical: site.url },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export const viewport: Viewport = {
