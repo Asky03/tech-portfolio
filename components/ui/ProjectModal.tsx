@@ -1,8 +1,12 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
-import { X, Github, ExternalLink, Target, User as UserIcon, Sparkles, Trophy } from 'lucide-react';
+import {
+  X, Github, ExternalLink, Target, User as UserIcon, Sparkles,
+  Trophy, Brain, Bug, ChevronRight, Eye,
+} from 'lucide-react';
 import type { Project } from '@/data/projects';
 
 interface Props {
@@ -14,7 +18,6 @@ export default function ProjectModal({ project, onClose }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const isOpen = !!project;
 
-  // Lock scroll
   useEffect(() => {
     if (!isOpen) return;
     const prev = document.body.style.overflow;
@@ -24,7 +27,6 @@ export default function ProjectModal({ project, onClose }: Props) {
     };
   }, [isOpen]);
 
-  // ESC + focus trap
   useEffect(() => {
     if (!isOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -84,6 +86,19 @@ export default function ProjectModal({ project, onClose }: Props) {
               <X size={18} />
             </button>
 
+            {project.cover && (
+              <div className="relative aspect-[16/8] w-full overflow-hidden rounded-t-2xl">
+                <Image
+                  src={project.cover}
+                  alt={project.coverAlt || `${project.title} screenshot`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/20 to-transparent" />
+              </div>
+            )}
+
             <div className="p-6 sm:p-9">
               <div className="flex flex-wrap gap-1.5 mb-3">
                 {project.badges.map((b) => (
@@ -119,6 +134,44 @@ export default function ProjectModal({ project, onClose }: Props) {
                   ))}
                 </ul>
               </div>
+
+              {/* Deep-dive sections — only render for projects that have them */}
+              {project.deepDive?.keyDecision && (
+                <DeepBlock
+                  icon={<Brain size={12} />}
+                  label="Key technical decision"
+                  title={project.deepDive.keyDecision.title}
+                  body={project.deepDive.keyDecision.body}
+                />
+              )}
+
+              {project.deepDive?.hardestProblem && (
+                <DeepBlock
+                  icon={<Bug size={12} />}
+                  label="Hardest problem"
+                  title={project.deepDive.hardestProblem.title}
+                  body={project.deepDive.hardestProblem.body}
+                />
+              )}
+
+              {(project.deepDive?.showableToday || project.deepDive?.nextMilestone) && (
+                <div className="grid sm:grid-cols-2 gap-3 mt-5">
+                  {project.deepDive.showableToday && (
+                    <SmallBlock
+                      icon={<Eye size={11} />}
+                      label="Showable today"
+                      body={project.deepDive.showableToday}
+                    />
+                  )}
+                  {project.deepDive.nextMilestone && (
+                    <SmallBlock
+                      icon={<ChevronRight size={11} />}
+                      label="Next milestone"
+                      body={project.deepDive.nextMilestone}
+                    />
+                  )}
+                </div>
+              )}
 
               {project.impact && (
                 <div className="mt-7 p-4 rounded-xl bg-emerald-400/[0.04] border border-emerald-400/15">
@@ -171,6 +224,33 @@ function Detail({ icon, label, body }: { icon: React.ReactNode; label: string; b
         {icon} {label}
       </h3>
       <p className="text-white/80 text-sm leading-relaxed">{body}</p>
+    </div>
+  );
+}
+
+function DeepBlock({
+  icon, label, title, body,
+}: { icon: React.ReactNode; label: string; title: string; body: string }) {
+  return (
+    <div className="mt-7 p-5 rounded-xl bg-white/[0.02] border border-white/10">
+      <h3 className="text-xs uppercase tracking-[0.18em] text-accent mb-2 inline-flex items-center gap-2">
+        {icon} {label}
+      </h3>
+      <p className="text-white font-medium leading-snug">{title}</p>
+      <p className="text-white/70 text-sm leading-relaxed mt-2">{body}</p>
+    </div>
+  );
+}
+
+function SmallBlock({
+  icon, label, body,
+}: { icon: React.ReactNode; label: string; body: string }) {
+  return (
+    <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.08]">
+      <h4 className="text-[10px] uppercase tracking-[0.18em] text-white/45 mb-1.5 inline-flex items-center gap-1.5">
+        {icon} {label}
+      </h4>
+      <p className="text-white/75 text-sm leading-relaxed">{body}</p>
     </div>
   );
 }
