@@ -109,12 +109,31 @@ The app builds and runs without a Resend key — only the contact API will fail 
 - [ ] **Replace starter posts in `data/notes.ts`** with real blog links (or delete the section if you don't blog yet)
 - [ ] **Edit the About paragraph** in `components/sections/About.tsx` (search for `TODO`)
 - [ ] **Add `public/resume.pdf`** so the resume button works
-- [ ] **Add `public/og.png`** (1200×630) for social sharing previews
-- [ ] **Add favicons** to `public/` (favicon.ico, apple-touch-icon.png, etc.)
+- [ ] **Add `public/og.png`** (1200×630) for social sharing previews — see `public/og.svg` for the template
+- [ ] **Add favicons** to `public/` (favicon.ico, apple-touch-icon.png, etc.) — see `public/favicon.svg`
 - [ ] **Update `NEXT_PUBLIC_SITE_URL`** in `.env.local` to your real domain
 - [ ] **Verify your domain in Resend** and update `CONTACT_FROM_EMAIL` to `noreply@yourdomain.com` for production deliverability
 - [ ] **Add the CrowdShield repo URL** in `data/projects.ts` once it's public
-- [ ] **Fix the T3TRUST repo URL** if needed (currently `Asky03/t3trust`)
+- [ ] **Verify your repo URLs** in `data/projects.ts` (especially `Kiranawala-` — confirm the trailing dash is intentional)
+
+## 🎨 Project case-study modal — the `deepDive` field
+
+Each project in `data/projects.ts` can include an optional `deepDive` object for a richer case study:
+
+```ts
+deepDive: {
+  keyDecision:    { title: 'Why X over Y', body: '...' },  // your biggest tech choice + why
+  hardestProblem: { title: 'What broke',   body: '...' },  // the gnarly part you solved
+  nextMilestone:  'What you\'re building next',
+  showableToday:  'What works right now that you could demo',
+}
+```
+
+Only flagship projects need this. Smaller projects look fine with just the basic fields. The modal automatically hides any section you don't fill in.
+
+## 🚀 Deployment
+
+For step-by-step Vercel + Resend setup, see [`DEPLOY.md`](./DEPLOY.md) — it has everything from env vars to custom domain DNS to verifying email deliverability.
 
 ## ☁️ Deploy to Vercel
 
