@@ -169,6 +169,7 @@ export const projects: Project[] = [
       'Scalable structure for future admin panel + analytics',
     ],
     codeUrl: 'https://github.com/Asky03/Kiranawala-',
+    // NOTE: trailing dash in URL is unusual — verify this matches your actual repo name on GitHub.
     status: 'shipped',
   },
 ];
