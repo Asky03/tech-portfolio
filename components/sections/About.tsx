@@ -1,6 +1,6 @@
 import SectionHeading from '@/components/ui/SectionHeading';
 import Reveal from '@/components/ui/Reveal';
-import { MapPin, Coffee, Code2 } from 'lucide-react';
+import { MapPin, Cloud, Dumbbell } from 'lucide-react';
 
 export default function About() {
   return (
@@ -13,25 +13,27 @@ export default function About() {
 
         <div className="grid lg:grid-cols-[1.6fr_1fr] gap-10 items-start">
           <Reveal className="space-y-5 text-white/80 text-base sm:text-lg leading-relaxed max-w-2xl">
-            {/* TODO: rewrite this paragraph in your own voice. Keep it to 3 sentences max. */}
             <p>
-              I&apos;m Ashutosh — a software developer in Bengaluru who&apos;s most at home on the
-              backend. I like systems with clear contracts, infrastructure that doesn&apos;t
-              surprise you at 2am, and frontends that respect the user&apos;s attention.
+              I&apos;m Ashutosh — a third-year CS student in Bengaluru who builds
+              backend systems and cloud-based applications. I like working on
+              problems where the hard part isn&apos;t the framework, it&apos;s the
+              data flow, the failure modes, and what happens when traffic spikes.
             </p>
             <p>
-              Lately I&apos;ve been building <strong className="text-white">CrowdShield</strong>{' '}
-              (AI-driven crowd monitoring on AWS), shipping smaller GenAI experiments with RAG, and
-              going deeper on cloud architecture and security fundamentals. I&apos;m currently
-              looking for software engineering internships and full-stack roles where I can ship
-              real things end-to-end.
+              Right now I&apos;m going deeper on{' '}
+              <strong className="text-white">AWS, system design, and DevOps workflows</strong>{' '}
+              while building{' '}
+              <strong className="text-white">CrowdShield</strong> — an AI crowd-monitoring
+              prototype that does person detection and risk estimation from event footage.
+              Looking for software engineering internships where I can own real
+              backend work end-to-end.
             </p>
           </Reveal>
 
           <Reveal delay={0.1} className="space-y-3 text-sm">
             <Pill icon={<MapPin size={14} />} label="Bengaluru, India" />
-            <Pill icon={<Code2 size={14} />} label="Backend · Cloud · GenAI" />
-            <Pill icon={<Coffee size={14} />} label="Currently learning DevOps & system design" />
+            <Pill icon={<Cloud size={14} />} label="Backend · Cloud · DevOps" />
+            <Pill icon={<Dumbbell size={14} />} label="Off-keyboard: fitness, design" />
           </Reveal>
         </div>
       </div>
