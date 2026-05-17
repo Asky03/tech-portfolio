@@ -7,9 +7,9 @@ export const site = {
   github: 'https://github.com/Asky03',
   linkedin: 'https://www.linkedin.com/in/ashutoshs27/',
   resumeUrl: '/resume.pdf', // place file in /public/resume.pdf
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://ashutosh.dev',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://ashutoshs.vercel.app',
   description:
-    'Portfolio of Ashutosh Shekhar — a software developer focused on full-stack development, cloud computing, backend systems, cybersecurity, and AI-powered projects.',
+    'Portfolio of Ashutosh Shekhar — a software developer focused on backend systems, cloud infrastructure, and AI-powered projects. Currently building CrowdShield.',
   availability: 'Open to internships & software roles',
 };
 
@@ -19,6 +19,5 @@ export const navItems = [
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Notes', href: '#notes' },
   { label: 'Connect', href: '#connect' },
 ];
