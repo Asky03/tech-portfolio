@@ -11,8 +11,10 @@ import CurrentlyBuilding from '@/components/sections/CurrentlyBuilding';
 import Experience from '@/components/sections/Experience';
 import Certifications from '@/components/sections/Certifications';
 import GitHubCard from '@/components/sections/GitHubCard';
-import Notes from '@/components/sections/Notes';
 import Connect from '@/components/sections/Connect';
+
+// Notes section temporarily removed — re-add when you have real blog posts.
+// import Notes from '@/components/sections/Notes';
 
 export default function HomePage() {
   return (
@@ -30,7 +32,6 @@ export default function HomePage() {
         <Experience />
         <Certifications />
         <GitHubCard />
-        <Notes />
         <Connect />
       </main>
       <Footer />
