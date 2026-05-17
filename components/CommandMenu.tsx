@@ -5,7 +5,7 @@ import { Command } from 'cmdk';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   Folder, User, Wrench, Briefcase, Award, Github, Linkedin, Mail, FileText,
-  Search, BookOpen, Sparkles, Hammer,
+  Search, Sparkles, Hammer,
 } from 'lucide-react';
 import { site } from '@/lib/site';
 
@@ -58,7 +58,6 @@ export default function CommandMenu() {
     { id: 'building', label: 'Currently Building', icon: <Hammer size={16} />, group: 'Navigate', action: () => goTo('#building'), keywords: ['crowdshield', 'wip'] },
     { id: 'experience', label: 'Experience', icon: <Briefcase size={16} />, group: 'Navigate', action: () => goTo('#experience') },
     { id: 'certs', label: 'Certifications', icon: <Award size={16} />, group: 'Navigate', action: () => goTo('#certifications') },
-    { id: 'notes', label: 'Notes & Learning', icon: <BookOpen size={16} />, group: 'Navigate', action: () => goTo('#notes') },
     { id: 'connect', label: 'Connect', icon: <Sparkles size={16} />, group: 'Navigate', action: () => goTo('#connect') },
 
     { id: 'resume', label: 'Download Resume', icon: <FileText size={16} />, group: 'Actions', action: () => openExt(site.resumeUrl) },
