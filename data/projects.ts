@@ -13,9 +13,8 @@ export interface Project {
   impact?: string;
 
   /** Path under /public, e.g. "/images/projects/crowdshield.png".
-   *  16:10 ratio recommended (1280x800 or similar). Leave undefined if no screenshot yet. */
+   *  16:10 ratio recommended. Leave undefined if no screenshot yet. */
   cover?: string;
-  /** Used as alt text and modal hero label. */
   coverAlt?: string;
 
   codeUrl?: string;
@@ -23,8 +22,6 @@ export interface Project {
   status?: 'shipped' | 'building' | 'concept';
   featured?: boolean;
 
-  /** Optional deeper sections for a richer case-study modal.
-   *  Only CrowdShield uses these initially. Others can stay minimal. */
   deepDive?: {
     keyDecision?: { title: string; body: string };
     hardestProblem?: { title: string; body: string };
@@ -37,61 +34,59 @@ export const projects: Project[] = [
   {
     id: 'crowdshield',
     title: 'CrowdShield',
-    tagline: 'AI-powered crowd monitoring & early warning platform',
+    tagline: 'AI crowd-density monitoring with cloud-based risk alerting',
     category: 'AI/ML',
     badges: ['AI/ML', 'Cloud', 'Backend'],
-    tech: ['Python', 'YOLOv8', 'FastAPI', 'AWS', 'TensorFlow', 'Docker'],
+    tech: ['Python', 'YOLO', 'Node.js', 'Express', 'React/Next.js', 'AWS'],
     problem:
-      'Large public events have no real-time signal for dangerous crowd density until incidents already occur. Manual surveillance is slow, reactive, and inconsistent across event types.',
+      'Large public events have no real-time signal for dangerous crowd density until incidents already occur. Manual surveillance is slow, reactive, and inconsistent across venue types and event sizes.',
     role:
-      'Backend architecture, API integration, testing workflows, cloud deployment planning, and dashboard integration.',
+      'End-to-end build — detection pipeline, backend APIs, frontend dashboard, and cloud integration plan.',
     features: [
-      'Crowd density detection pipeline using YOLOv8 + density estimation',
-      'REST APIs for live frame analysis and threshold-based alert webhooks',
-      'Unit, integration, and system tests covering core inference and alert flows',
-      'Dashboard surfacing live crowd metrics and configurable threshold alerts',
-      'Deployment plan for AWS with autoscaling for inference workers',
+      'YOLO-based person detection on images and video frames',
+      'Crowd density and risk-level estimation logic with configurable thresholds',
+      'Node/Express backend exposing analysis and alert APIs',
+      'React/Next.js dashboard for surfacing risk metrics',
+      'Planned AWS integration for image storage and alerting workflows',
     ],
     impact:
-      'Validated detection accuracy on test footage and built a deployable backend ready for pilot integration with event-management systems.',
+      'Working local prototype that processes crowd images, detects people, and produces a risk estimate — foundation for the deployable system.',
+    codeUrl: 'https://github.com/Asky03/Crowdshield1',
     status: 'building',
     featured: true,
-    // cover: '/images/projects/crowdshield.png', // TODO: add screenshot
-    // coverAlt: 'CrowdShield dashboard showing live crowd density heatmap',
     deepDive: {
-      // TODO: Confirm or rewrite — these are educated drafts from your questionnaire.
-      // Once you fill questionnaire Section 3, I'll replace these with your exact words.
       keyDecision: {
-        title: 'Why YOLOv8 over CSRNet for detection',
-        body: 'YOLOv8 nano gave us sub-100ms inference on a single GPU with acceptable density accuracy for our threshold ranges. CSRNet was more accurate at extreme densities but ~3x slower — wrong tradeoff for a real-time alerting system.',
+        title: 'YOLO-based detection for the MVP',
+        body: 'I picked a YOLO detection pipeline because it gives practical person-detection on real footage, is easy to demonstrate visually, and leaves a clean path to extend later with density estimation, heatmaps, and real-time alerting. Choosing a simpler proven pipeline over a heavier research model meant the project could actually ship as a prototype.',
       },
       hardestProblem: {
-        title: 'What "dangerous" means is context-dependent',
-        body: 'Density thresholds for an outdoor festival differ wildly from a tier-3 city religious procession. Solved with configurable presets per event type rather than a single global threshold.',
+        title: '"Dangerous density" is not a single number',
+        body: 'Risk thresholds change based on camera angle, venue type, crowd movement, and event size — a number that\'s safe at a wedding is dangerous at a stampede-prone procession. Working on configurable presets and context-aware thresholds rather than a single global value.',
       },
-      nextMilestone: 'Public demo with sample footage processing in-browser',
-      showableToday: 'Backend running locally on sample footage; dashboard wired to live metrics.',
+      showableToday:
+        'Public repo, local prototype that runs on sample images and produces a risk estimate, plus the architecture for the backend/cloud alerts.',
+      nextMilestone:
+        'Polish the backend and ML pipeline, wire up image upload + storage, deploy a working demo, and ship a recruiter-ready README.',
     },
-    // TODO: add codeUrl when repo is public
   },
   {
     id: 'docuai',
     title: 'DocuAi',
-    tagline: 'AI document Q&A + summarizer with RAG pipeline',
+    tagline: 'AI document Q&A and summarizer with a RAG pipeline',
     category: 'GenAI',
     badges: ['GenAI', 'RAG', 'Summarization'],
-    tech: ['Python', 'MiniLM', 'Flan-T5', 'FAISS', 'Streamlit'],
+    tech: ['Python', 'LangChain', 'FAISS', 'Flan-T5', 'Streamlit'],
     problem:
-      'Reading and extracting structured info from long documents is tedious. Existing tools are either too generic or too expensive.',
+      'Reading and pulling structured info out of long documents is slow. Existing tools are either too generic or too expensive for personal/academic use.',
     role: 'Solo build — pipeline design, embedding strategy, UI.',
     features: [
-      'File → chunk → embeddings → answer pipeline',
-      'MiniLM sentence embeddings for semantic retrieval',
+      'PDF → chunk → embeddings → answer pipeline',
+      'FAISS-based vector retrieval for semantic search',
       'Flan-T5 for grounded summarization and Q&A',
-      'Clean GitHub-ready structure and deployable UI',
+      'Streamlit interface for conversational document chat',
     ],
     impact:
-      'Working RAG prototype that handles multi-page documents with readable summaries and accurate retrieval.',
+      'Working RAG prototype that handles multi-page documents and produces readable summaries and accurate retrieval.',
     codeUrl: 'https://github.com/Asky03/GenAimodel',
     status: 'shipped',
     featured: true,
@@ -107,7 +102,7 @@ export const projects: Project[] = [
       'Most personal storage apps trust the provider with plaintext data. Users need a vault where the host cannot read their files.',
     role: 'Solo build — auth flow, encryption layer, storage rules.',
     features: [
-      'Firebase Auth with strong access patterns',
+      'Firebase Auth with role-based access patterns',
       'Client-side AES encryption before upload',
       'SHA-256 integrity hashing on stored blobs',
       'Designed for scalable cloud deployment',
@@ -127,7 +122,7 @@ export const projects: Project[] = [
     tech: ['Solidity', 'Hardhat', 'Truffle', 'Node.js'],
     problem:
       'Underbanked users in tier-3 cities have no transparent way to access emergency micro-credit with auditable trust signals.',
-    role: 'Concept design + smart-contract scaffolding.',
+    role: 'Concept design and smart-contract scaffolding.',
     features: [
       'Trust-scoring concept tied to on-chain history',
       'Ledger-style records for traceability',
@@ -146,7 +141,7 @@ export const projects: Project[] = [
     problem: 'Hands-on practice deploying and interacting with smart contracts end-to-end.',
     role: 'Solo learning project.',
     features: [
-      'Solidity contract storing & updating a greeting',
+      'Solidity contract storing and updating a greeting',
       'Ethers.js v5 read/write integration',
       'MetaMask wallet connection in the browser',
     ],
@@ -162,15 +157,14 @@ export const projects: Project[] = [
     tech: ['JavaScript', 'Node.js', 'MongoDB', 'Express'],
     problem:
       'Kirana shops in tier-3 cities lack a lightweight digital layer for orders, inventory, and customer connection.',
-    role: 'Backend & data model design.',
+    role: 'Backend and data model design.',
     features: [
       'Workflow-driven design rooted in real shop ops',
       'Backend-ready MongoDB schema',
-      'Scalable structure for future admin panel + analytics',
+      'Scalable structure for future admin panel and analytics',
     ],
-    codeUrl: 'https://github.com/Asky03/Kiranawala-',
-    // NOTE: trailing dash in URL is unusual — verify this matches your actual repo name on GitHub.
-    status: 'shipped',
+    codeUrl: 'https://github.com/Asky03/Kiranawala91',
+    status: 'concept',
   },
 ];
 
